@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2" xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" identifier="MANIFEST-20000E60C87B30CB4E7F7F6417313F6C" xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+    <imsmd:lom>
+      <imsmd:general>
+        <imsmd:identifier>SENAI DN</imsmd:identifier>
+        <imsmd:title>
+          <imsmd:langstring xml:lang="en">SENAI DN - http://www.portaldaindustria.com.br/senai</imsmd:langstring>
+        </imsmd:title>
+      </imsmd:general>
+    </imsmd:lom>
+  </metadata>
+  <organizations default="ORG-UC_TEMPLATE">
+    <organization identifier="ORG-UC_TEMPLATE" structure="hierarchical">
+      <title>Unidade Curricular Template (RS 05/02/2015)</title>
+      <item identifier="ITEM-UC_TEMPLATE_UE1" isvisible="true" identifierref="RES-UC_TEMPLATE_UE1_index">
+        <title>Etapa 1</title>
+        <adlcp:masteryscore>70.0</adlcp:masteryscore>
+      </item>
+<!--      <item identifier="ITEM-UC_TEMPLATE_UE2" isvisible="true" identifierref="RES-UC_TEMPLATE_UE2_index">
+        <title>Etapa 2</title>
+        <adlcp:masteryscore>70.0</adlcp:masteryscore>
+      </item> -->
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-UC_TEMPLATE_UE1_index" href="uc_template/ue1/index.html" adlcp:scormtype="asset" type="text/html"/>
+<!--    <resource identifier="RES-UC_TEMPLATE_UE2_index" href="uc_template/ue2/index.html" adlcp:scormtype="asset" type="text/html"/> -->
+  </resources>
+</manifest>

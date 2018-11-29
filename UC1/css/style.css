@@ -1,0 +1,299 @@
+* {
+ margin:0;
+ padding:0;
+ font-family:Verdana, Geneva, sans-serif;
+ font-size:13px;
+ text-decoration:none;
+ color:#000;
+ z-index:0;
+}
+body {
+ clear:both;
+ width:100%;
+ height:100%;
+ overflow: hidden;/*TESTE*/
+ background-color:#fff;
+}
+*:fullscreen, *:-webkit-full-screen, *:-moz-full-screen, *:-ms-fullscreen {
+ background-color: WHITE;
+ position:absolute;
+ left:0px;
+ top:0px;
+ width:100%;
+ height:100%;
+ background-color:#fff;
+}
+#barra {
+ width:20px;
+ height:100%;
+ position:absolute;
+ z-index:4000;
+}
+#content, #menu {
+ box-sizing:border-box;
+ -webkit-box-sizing:border-box;
+ -moz-box-sizing:border-box;
+ -ms-box-sizing:border-box;
+ -o-box-sizing:border-box;
+}
+#content {
+ 
+/*BAADY ONDE APARECE TODO CONTEUDO*/
+ 
+/* overflow-x: visible;/*overfloww do conteudo*/
+   
+ background-color: WHITE;   
+ min-height:330px;
+ min-width: 200px;
+ position:relative;
+ 
+ float:left;
+ left:240px;
+ margin:10px 0px 0px 0px;
+ z-index:3000;
+ box-shadow:1px 1px 1em #666;
+ -webkit-box-shadow:1px 1px 1em #666;
+ -moz-box-shadow:1px 1px 1em #666;
+}
+#content.semMenu { /* utilizado nos popups */
+ width:98%;
+ left:0px;
+ margin:7px;
+}
+#content.loading {
+ background-image:url(../images/lightbox-ico-loading.gif);
+ background-position:center center;
+ background-repeat:no-repeat;
+}
+#conteudo {
+ overflow-x:hidden;  
+ position:relative;
+ margin:15px 50px 0px 40px;
+ padding:0px;
+ 
+ z-index:1;
+ -webkit-transition:all 400ms ease-out;
+ -moz-transition:all 400ms ease-out;
+ -ms-transition:all 400ms ease-out;
+ -o-transition:all 400ms ease-out;
+ transition:all 400ms ease-out;
+ 
+}
+
+
+
+.setaLeft, .setaRight {
+ position:absolute;
+ top:48%;
+}
+.setaLeft { left:10px; }
+.setaRight {
+ right:10px;
+ z-index:3001;
+}
+.setaRight:hover, .setaLeft:hover {
+ cursor:pointer;
+ width:20px;
+}
+#topo {
+ border:1px solid #B5B5B5;
+ width:100%;
+ height:30px;
+ margin-left:-1px;
+ padding-top:8px;
+ text-shadow:0 1px rgba(0, 0, 0, 0.1);
+ background-image:url(../images/logo_senai.png);
+ background-repeat:no-repeat;
+ background-position:20px center;
+ position:relative;
+ z-index:6000;
+}
+#topo span {
+    
+ border-left:1px solid #999999;
+ font-size:18px;
+ margin-left:140px;
+ padding-left:8px;
+ white-space:nowrap;
+ z-index:6001;
+}
+#topo div {
+ position:absolute;
+ top:10px;
+ right:15px;
+ z-index:6002;
+}
+#topo div img {
+ cursor:pointer;
+ opacity:0.5;
+}
+#topo div img:hover,#home:hover,#ajuda:hover {
+ opacity:1;
+ -webkit-transition:opacity 0.3s ease-in-out;
+ -moz-transition:opacity 0.3s ease-in-out;
+ -ms-transition:opacity 0.3s ease-in-out;
+ -o-transition:opacity 0.3s ease-in-out;
+ transition:opacity 0.3s ease-in-out;
+}
+#contadorTela, #painelDeControle {
+ position:absolute;
+ bottom:0px;
+ height:20px;
+ display:inline;
+}
+#contadorTela {
+
+ margin:0px 47%;
+ width:60px;
+ z-index:7001;
+}
+
+#painelDeControle { z-index:7000; }
+#home, #ajuda {
+ opacity:0.5;
+ position:fixed;
+ cursor:pointer;
+}
+#home { margin:3px 0px 0px 13px; }
+#ajuda { margin:0px 0px 0px 30px; }
+/* Menu de conteúdo */
+#menu {
+    
+    
+    /*MENUUUUUUU*/
+ height: 96.5%;
+ overflow: hidden; /*overflow correto do menu*/
+ float:left;
+ position:absolute;
+ margin:10px 0px 0px 0px;
+ width:230px;
+
+ box-shadow:0px 0px 1em #333;
+ -webkit-box-shadow:0px 0px 1em #333;
+ -moz-box-shadow:0px 0px 1em #333;
+ z-index:5000;
+ 
+}
+#menu h2 {
+ margin:0px;
+ padding:12px 0px 5px 12px;
+ font-size:18px;
+ color:#fff;
+ font-weight:bold;
+}
+ul.mtree {
+ opacity:0;
+ margin:0;
+ padding:0px;
+ max-width:230px;
+}
+ul.mtree ul {
+ margin-left:0;
+ padding:0;
+ font-size:18px;
+}
+ul.mtree ul > li { font-size:.9em; }
+ul.mtree li {
+ list-style:none;
+ text-align:left;
+ position:relative;
+}
+ul.mtree a {
+ display:block;
+ text-decoration:none;
+ padding:8px 0px 8px 0.8em;
+}
+ul.mtree li > a.visitado::before {
+ content:'\25a0';
+ font-weight:bold;
+ position:absolute;
+ left:5px;
+ top:5px;
+ text-shadow:1px 1px rgba(0,0,0,0.2);
+}
+ul.mtree li > a { padding-left:1.3em; }
+ul.mtree li li > a { padding-left:2.1em; }
+ul.mtree li li li > a { padding-left:2.9em; }
+ul.mtree li li li li > a { padding-left:3.7em; }
+ul.mtree li li li li li > a { padding-left:4.5em; }
+ul.mtree li.mtree-node > a {
+ font-weight:bold;
+ padding-right:20px;
+}
+ul.mtree li.mtree-node { position:relative; }
+ul.mtree li.mtree-node > a::after {
+ font-weight:normal;
+ position:absolute;
+ right:7px;
+ top:8px;
+}
+ul.mtree li.mtree-open > a::after { content:'-'; }
+ul.mtree li.mtree-closed > a::after { content:'+'; }
+ul.mtree ul > li:first-child { margin-top:1px; }
+ul.mtree > li, #menu h2 { border-bottom:1px solid rgba(200,200,200,0.7); }
+ul.mtree li:last-child > a { border:none; }
+ul.mtree li.mtree-node:last-child > ul > li:last-child {
+ margin-bottom:0;
+ padding-bottom:0;
+ border-bottom:none;
+}
+/* Alto Contraste */
+body.altoContraste #content { background-color:#222222; }
+body.altoContraste #menu, body.altoContraste ul.mtree,
+body.altoContraste ul.mtree li > a,
+body.altoContraste ul.mtree li.mtree-node > a::after {
+ background-color:#222222;
+ color:#fff !important;
+}
+body.altoContraste ul.mtree li > a:hover,
+body.altoContraste ul.mtree li.mtree-node > a:hover::after,
+body.altoContraste ul.mtree li.mtree-active > a::after,
+body.altoContraste ul.mtree li.mtree-active > a {
+ background-color:#fff;
+ color:#222222 !important;
+}
+body.altoContraste ul.mtree li > a.visitado::before,
+body.altoContraste #contadorTela { color:#fff; }
+body.altoContraste ul.mtree li > a.visitado:hover::before,
+body.altoContraste ul.mtree li.mtree-active > a.visitado::before {
+ color:#222222;
+}
+
+#menu:hover{
+    overflow: auto; /*aqui faz o menu aparecer qnd passar mouse por cima*/
+    
+}
+
+.visivel::-webkit-scrollbar {
+	width: 7px;  
+    background-color: #eee;
+}
+
+.visivel::-webkit-scrollbar-thumb {
+	background:#aaa;
+	border-radius: 4px;
+    
+}
+
+#conteudo::-webkit-scrollbar {
+	width: 7px;
+}
+
+#conteudo::-webkit-scrollbar-thumb {
+	background: #aaa;
+	border-radius: 4px;
+   
+}
+#conteudo::-webkit-scrollbar{
+    margin-right: 150px;
+}
+
+
+
+
+
+
+
+
+
+

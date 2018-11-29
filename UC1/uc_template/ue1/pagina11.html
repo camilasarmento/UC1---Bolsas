@@ -1,0 +1,39 @@
+<style>
+    .balao{
+        background-color: #fff;
+        border: 2px solid #000;
+        border-radius: 10px;
+        width: 30%;
+        float: right;
+        padding: 10px 25px;
+        color: #000;
+        font-size: 20px;
+        right: 15%;
+        position: absolute;
+    }
+    .balao:after{
+        /*----seta do balão-----*/
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid #000;
+        /*---definir posição da seta---*/
+        bottom: -20px;
+        right: 10%;
+    }
+</style>
+
+<h1>Linhas retas</h1>
+<div class="row">
+    <div class="column">
+        <img src="img/Slide32.png" style="float: left; margin: 20px 10%; width: 40%">
+    </div>
+    <div class="column">
+        <div class="balao"><p>Você sabia que a linha reta pode ser vertical, inclinada  ou simplesmente reta? Tudo depende da sua posição no espaço.</p>
+        </div>
+        <img src="img/Luca.png" style="float: right; margin-top:10%; margin-right: 20%">
+    </div>
+</div>

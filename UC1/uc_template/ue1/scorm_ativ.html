@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exemplo de integração: Atividade em HTML com SCORM</title>
+  <link href="../../lib/messi/messi.min.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/pagina.css" rel="stylesheet">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/messi/messi.min.js"></script>
+  <script src="../../lib/APIWrapper.js"></script>
+  <script src="../../lib/SCOFunctions.js"></script>
+  <script src="../../js/funcoes.js"></script>
+  <script src="../../js/acoes.js"></script>
+  <script>
+  //<![CDATA[
+  var layerMsg, vetSimul, params;
+
+  $(document).ready(function() {
+   set_page_skin();
+   document.getElementById('content').innerHTML=getHtmlTopo('Exemplo de integração: Atividade em HTML com SCORM',false,true)
+    +'<section id="conteudo" style="text-align:right;margin:10px 30px">\n'
+    +'  <label for="tf_score">Score:<\/label>\n'
+    +'  <input type="text" name="tf_score" id="tf_score" size="5" maxlength="5" value="90.00">\n'
+    +'  <button type="button" onclick="salva()">salvar no scorm<\/button>\n'
+    +'  <button type="button" onclick="scorm_ativ_fecha()">sair<\/button>\n'
+    +'  <p id="layerMsg" style="text-align:center;margin:0px 30px"><\/p>\n'
+    +'<\/section>\n';
+   layerMsg=document.getElementById('layerMsg');
+   params=getUrlVars();
+   vetSimul={ commit:params['report']=='false',
+    id:'ativ_exemplo_html'+(params['report']=='false'?'_no_report':'') };
+   api=getAPIHandle();
+   if(api==null) layerMsg.innerHTML=layerMsg.innerHTML+'Erro ao carregar a API de SCORM.<br>\n';
+   else {
+     startTimer();
+     layerMsg.innerHTML=layerMsg.innerHTML+'student_id: '+api.LMSGetValue('cmi.core.student_id')+'<br>\n'
+      +'mastery_score: '+parseFloat(api.LMSGetValue('cmi.student_data.mastery_score'))+'<br>\n'
+      +'num_objective: '+scorm_ativ_pos(vetSimul['id'])+'<br>\n';
+   }
+  });
+  function salva() {
+    vetSimul['score']=parseFloat(document.getElementById('tf_score').value);
+    if(scorm_ativ_salva(vetSimul)) {
+      if(!vetSimul['commit']) {
+        api.LMSSetValue('cmi.comments','<div style="font:normal 12px Arial,Helvetica,sans-serif;padding:7px;margin-bottom:10px;border:5px solid #CECECE;background:#E9E9E9">\n'
+         +'  <div style="font-size:18px;font-weight:bold;margin-bottom:5px">Exemplo de integração: Atividade em SCORM / HTML em Popup<\/div>\n'
+         +'  <div style="border:1px solid #CECECE;background-color:#FFFFFF;padding:5px;margin:5px 0px">\n'
+         +'    <div style="font-size:14px;font-weight:bold;margin-bottom:5px">RELATÓRIO DE AVALIAÇÃO DA ATIVIDADE<\/div>\n'
+         +'    Tempo de realização da tarefa: '+vetSimul['session_time']+'<br>\n'
+         +'    Nota: '+vetSimul['score'].toFixed(2)+'<br>\n'
+         +'    <div style="padding-top:5px"><b>Em:<\/b> '+vetSimul['data']+'&nbsp;&nbsp;&nbsp;'
+         +'<b>Hora:<\/b> '+vetSimul['hora']+'<\/div>\n'
+         +'  <\/div>\n'
+         +'<\/div>\n');
+        api.LMSCommit(''); // o LMSFinish tranca as outras atividades
+      }
+      layerMsg.innerHTML=layerMsg.innerHTML+'Desempenho e relat&oacute;rio salvos com sucesso:<br>\n'
+       +'* Tempo de realização da tarefa: '+vetSimul['session_time']+'<br>\n'
+       +'* Nota: '+vetSimul['score'].toFixed(2)+'<br>\n';
+    }
+    else layerMsg.innerHTML=layerMsg.innerHTML+'Erro ao salvar a Tarefa<br>\n';
+  }
+  //]]>
+  </script>
+</head>
+<body onunload="if(window.opener.idAtual) window.opener.go(window.opener.idAtual)">
+  <section id="content" class="semMenu"></section>
+</body>
+</html>

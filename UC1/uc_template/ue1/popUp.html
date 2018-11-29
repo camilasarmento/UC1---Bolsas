@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>PNEaD</title>
+  <link href="../../lib/messi/messi.min.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/pagina.css" rel="stylesheet">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/messi/messi.min.js"></script>
+  <script src="../../js/funcoes.js"></script>
+  <script src="../../js/acoes.js"></script>
+  <script>
+  function init() {
+    set_page_skin();
+    document.getElementById('content').innerHTML=getHtmlTopo('Nome da Unidade Curricular',false,true)
+     +'<div id="flash_1" style="width:600px;height:400px;margin:5px auto 0px auto">anim/contextualizacao.swf<\/div>\n';
+    bindPlugins();
+  }
+  </script>
+</head>
+<body onload="init()">
+  <section id="content" class="semMenu"></section>
+</body>
+</html>

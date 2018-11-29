@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exemplo de integração: SCORM / Unity</title>
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/pagina.css" rel="stylesheet">
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="../../lib/APIWrapper.js"></script>
+  <script src="../../lib/SCOFunctions.js"></script>
+  <script src="../../lib/UnityObject2.js"></script>
+  <script src="../../js/funcoes.js"></script>
+  <script src="../../js/acoes.js"></script>
+  <script>
+  //<![CDATA[
+  var unityLayer, inner_size, timeout_id, id_simul;
+  var vet_simul=[
+   ['caminho/arquivo.unity3d','Largura','Altura','Nome do simulador'],
+   ['anim/simul_exemplo_cs.unity3d','100%','100%','Exemplo de integração simulador Unity C# em SCORM'],
+   ['anim/simul_exemplo_js.unity3d','100%','100%','Exemplo de integração simulador UnityScript em SCORM']
+  ];
+
+  $(document).ready(function() {
+   set_page_skin();
+   var err='',vet=getUrlVars();
+   unityLayer=document.getElementById('unityPlayer');
+   if(typeof vet['id_simul']=='undefined') err='ID do Simulador não informado.<br>\n';
+   else if(!/^\d+$/.test(vet['id_simul'])) {
+     err='ID do Simulador '+vet['id_simul']+' inválido.<br>\n';
+   } else {
+     id_simul=parseInt(vet['id_simul'],10);
+     if(id_simul<=0 || id_simul>=vet_simul.length)
+       err='ID do Simulador '+id_simul+' inválido.<br>\n';
+   }
+   api=getAPIHandle();
+   if(api==null) err+='Erro ao carregar a API de SCORM.<br>\n';
+   if(err!='') unityLayer.innerHTML=err;
+   else {
+     unityLayer.innerHTML=vet_simul[id_simul][0];
+     resize_do();
+     if(vet_simul[id_simul][1].indexOf('%')>0&& vet_simul[id_simul][2].indexOf('%')>0)
+       AddEvent(window,'resize',resize);
+     bindPlugins();
+   }
+  });
+  function resize() {
+    if(timeout_id>0) clearTimeout(timeout_id);
+    timeout_id=setTimeout(resize_do,200);
+  }
+  function resize_do() {
+    timeout_id=0;
+    inner_size=get_window_inner_size();
+    if(vet_simul[id_simul][1].indexOf('%')<0) inner_size['w']=vet_simul[id_simul][1];
+    else inner_size['w']=parseInt(vet_simul[id_simul][1],10)/100*inner_size['w'];
+    if(vet_simul[id_simul][2].indexOf('%')<0) inner_size['h']=vet_simul[id_simul][2];
+    else inner_size['h']=parseInt(vet_simul[id_simul][2],10)/100*inner_size['h'];
+    unityLayer.style.width=inner_size['w']+'px';
+    unityLayer.style.height=inner_size['h']+'px';
+    document.title=vet_simul[id_simul][3]+' ('+inner_size['w']+'x'+inner_size['h']+')';
+  }
+  //]]>
+  </script>
+</head>
+<body onunload="if(window.opener.idAtual) window.opener.go(window.opener.idAtual)">
+  <div class="unity_obj" id="unityPlayer"></div>
+</body>
+</html>
