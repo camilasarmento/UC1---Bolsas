@@ -1,0 +1,15 @@
+{
+"companyName": "SENAI PB",
+"productName": "EAD",
+"dataUrl": "_ Nova Proporcao Aurea.data.unityweb",
+"wasmCodeUrl": "_ Nova Proporcao Aurea.wasm.code.unityweb",
+"wasmFrameworkUrl": "_ Nova Proporcao Aurea.wasm.framework.unityweb",
+"asmCodeUrl": "_ Nova Proporcao Aurea.asm.code.unityweb",
+"asmMemoryUrl": "_ Nova Proporcao Aurea.asm.memory.unityweb",
+"asmFrameworkUrl": "_ Nova Proporcao Aurea.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
